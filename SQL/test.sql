@@ -91,5 +91,40 @@ desc verifiedTweets4;
 
 insert into verifiedTweets4(ID) values(null); /*This throws an error because 
 												we defined ID not to be null*/
-                                                
+   
+/*Adding unique key value. By using primary key we make sure to prohibit the
+adding of entry with same field we mension*/
+create table uniqueUser(
+	ID int not null,
+    name varchar(20),
+    age int,
+    primary key (ID)
+);
+
+desc uniqueUser;
+
+insert into uniqueUser(ID, name, age) values(1, 'Ankush', 20);
+insert into uniqueUser(ID, name, age) values(2, 'Roshan', 20);
+
+select * from uniqueUser;
+
+insert into uniqueUser(ID, name, age) values(1, 'Adam', 32); /*This will throws
+                                                            an error as ID value 1
+                                                            already exist*/
+                                                            
+create table uniqueUser1(
+	ID int not null auto_increment,
+    name varchar(20),
+    age int,
+    primary key (ID)
+);
+
+desc uniqueUser1;
+
+insert into uniqueUser1(name, age) values('Ankush', 20);
+insert into uniqueUser1(name, age) values('Roshan', 20);
+insert into uniqueUser1(name, age) values('Roshan', 20);
+
+select * from uniqueUser1;
+
 /*by Ankush Chavan*/
