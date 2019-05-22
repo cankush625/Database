@@ -28,3 +28,8 @@ select name, age from tweeterUsers; /*We may change the sequence of the columns 
 select * from tweeterUsers where username = 'cankush';
 select * from tweeterUsers where username = 'CankUSh'; /*It is case insensitive*/
 
+/*Aliases - It use to make the column title to show as we want*/
+select name, age as years from tweeterUsers;
+
+/*Updating*/
+update tweeterUsers set age=18 where name = 'Rob';
