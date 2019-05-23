@@ -33,3 +33,13 @@ select name, age as years from tweeterUsers;
 
 /*Updating*/
 update tweeterUsers set age=18 where name = 'Rob';
+
+/*Deleting or Removing*/
+delete from tweeterUsers where name = 'Robert';
+
+/*When the record is deleted, the id are not going to alter. This is because for each record
+an unique id is generated.*/
+insert into tweeterUsers(name, username, password, age) values('Ronda', 'ron2353', 'rondar@33687', 20);
+
+/*To delete all records from the database*/
+delete from tweeterUsers;
