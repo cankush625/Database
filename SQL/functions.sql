@@ -34,3 +34,19 @@ VALUES
 ('Consider the Lobster', 'David', 'Foster Wallace', 2005, 92, 343);
 
 select * from books;
+
+/*To concat the string*/
+select concat('Ross', ' ', 'Orton');
+
+/*Concatinating from the database*/
+select concat(author_fname, ' ', author_lname) from books;
+
+/*Concatinating and separating by comma*/
+select concat(author_fname, ',', author_lname) from books;
+
+/*Renaming the concatinated column*/
+select concat(author_fname, ' ', author_lname) as 'Author Name' from books;
+select author_fname as 'first name', author_lname as 'last name', concat(author_fname, ' ', author_lname) as 'Author Name' from books;
+
+/*Concat with separator*/
+select concat_ws(' - ', title, author_fname, author_lname) as 'Book Details' from books;
