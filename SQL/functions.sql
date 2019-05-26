@@ -50,3 +50,17 @@ select author_fname as 'first name', author_lname as 'last name', concat(author_
 
 /*Concat with separator*/
 select concat_ws(' - ', title, author_fname, author_lname) as 'Book Details' from books;
+
+/*Substring*/
+/*Selecting substring from starting index to the ending index*/
+select substring('Ankush', 1, 4);
+
+/*Selecting substring from starting index upto the end*/
+select substring('Ankush', 4);
+select substring('Ankush', -3);
+
+/*Selecting a substring from the database*/
+select substring(title, 1, 20) as 'Short title' from books;
+
+/*Selecting a substring by using concat*/
+select concat(substring(title, 1, 20), '...') as 'Short title' from books;
