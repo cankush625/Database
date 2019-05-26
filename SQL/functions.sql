@@ -64,3 +64,20 @@ select substring(title, 1, 20) as 'Short title' from books;
 
 /*Selecting a substring by using concat*/
 select concat(substring(title, 1, 20), '...') as 'Short title' from books;
+
+/*Replace a substring with another string*/
+select replace('Hello World', 'He', '#@');
+select replace('Hello World', 'He', '#@') as 'Replaced String';
+select replace('Hello World', 'l', '1') as 'Replaced String';
+
+/*Replace is case sensitive*/
+select replace('HellO World', 'o', '0') as 'Replaced String';
+
+/*Replace all spaces with and*/
+select replace('Fruit sweet milk', ' ', ' and ') as 'Replaced String';
+
+/*Replace a string in the database*/
+select replace(title, 'e', '3') as 'Replaced String' from books;
+
+/*Replace a string in the database by using concat*/
+select substring(replace(title, 'e', '3'), 1, 20) as 'Replaced String' from books;
