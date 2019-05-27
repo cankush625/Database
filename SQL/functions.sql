@@ -92,3 +92,25 @@ select reverse(author_fname) as 'Reversed Author name' from books;
 
 /*Reverse the string and concatinate with another string*/
 select concat(author_fname, ' ', reverse(author_lname)) as 'Author name' from books;
+
+/*char_length*/
+/*Finding number of characters in the string*/
+select char_length('Ankush');
+
+/*Displaying length of author last name in front of author name*/
+select author_lname, char_length(author_lname) as 'Length' from books;
+
+/*Using concat with char_length*/
+select concat(author_lname, ' is ', char_length(author_lname), ' characters long') as "Author's last name" from books;
+
+/*Upper and Lower case string*/
+select upper('Ankush') as 'Upper case';
+select lower('Ankush') as 'Lower case';
+
+/*Upper and Lower case in database*/
+select upper(title) as 'Title' from books;
+select lower(title) as 'Title' from books;
+
+/*Using concat with upper and lower*/
+select concat('My favorite book is ', upper(title)) as 'Favorite' from books;
+select concat('My favorite book is ', lower(title)) as 'Favorite' from books;
