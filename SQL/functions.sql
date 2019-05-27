@@ -65,6 +65,7 @@ select substring(title, 1, 20) as 'Short title' from books;
 /*Selecting a substring by using concat*/
 select concat(substring(title, 1, 20), '...') as 'Short title' from books;
 
+/*Replace*/
 /*Replace a substring with another string*/
 select replace('Hello World', 'He', '#@');
 select replace('Hello World', 'He', '#@') as 'Replaced String';
@@ -81,3 +82,13 @@ select replace(title, 'e', '3') as 'Replaced String' from books;
 
 /*Replace a string in the database by using concat*/
 select substring(replace(title, 'e', '3'), 1, 20) as 'Replaced String' from books;
+
+/*Reverse*/
+/*Reverse a string*/
+select reverse('Ankush') as 'Reversed string';
+
+/*Reverse a string from database*/
+select reverse(author_fname) as 'Reversed Author name' from books;
+
+/*Reverse the string and concatinate with another string*/
+select concat(author_fname, ' ', reverse(author_lname)) as 'Author name' from books;
