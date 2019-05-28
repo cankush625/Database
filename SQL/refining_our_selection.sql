@@ -22,3 +22,24 @@ select distinct author_fname, author_lname from books;
 
 /*distinct using concat*/
 select distinct concat(author_fname, ' ', author_lname) as 'Author name' from books;
+
+/*order by/
+/*Sorting using 'order by'*/
+select author_lname from books order by author_lname; /*By default it is ascending*/
+
+/*Sort using 'order by' in descending order*/
+select author_lname from books order by author_lname desc;
+
+select released_year from books order by released_year;
+select released_year from books order by released_year desc;
+
+select title, released_year, pages from books order by released_year;
+select title, pages from books order by released_year; /*We can also sort without printing that field*/
+
+/*We can set 'order by' using index of the selected field*/
+select title, author_fname, author_lname from books order by 2;
+
+/*sorting or ordering by two different columns or fields*/
+/*Sometimes it is happen that john comes before james because we have sorted using onky the last name and
+not by using both last name and first name. To overcome this we are sorting using both the fields*/
+select title, author_fname, author_lname from books order by author_fname, author_lname;
