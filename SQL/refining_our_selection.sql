@@ -61,3 +61,33 @@ select title, released_year from books order by released_year desc limit 8, 1;
 
 /*To get the items from starting index to the end of the table we specify a giant number*/
 select title, released_year from books limit 5, 1442545533334;
+
+/*like*/
+/*For better searching our data*/
+/*To search field containing that characters or words*/
+select * from books where author_fname like '%da%';
+select title from books where author_fname like '%da%';
+
+/*To search field starting with the characters or words*/
+select * from books where author_fname like 'da%';
+
+/*To search fields containing exactly characters or words*/
+select * from books where author_fname like 'dan';
+
+/*To search fields ending with the characters or words*/
+select * from books where author_fname like '%da';
+
+/*More wildcards*/
+/*'_' specifies the exactly one character. One underscore means one character*/
+/*Query to find the field containing exact number of characters*/
+select * from books where stock_quantity like '____';
+
+/*'%' percent sign means anything*/
+select * from books where stock_quantity like '%';
+
+/*'/' backSlash is used as escape character*/
+/*To select the title containing % sign*/
+select title from books where title like '%\%%';
+
+/*To select the title containing _ sign*/
+select title from books where title like '%\_%';
