@@ -46,7 +46,7 @@ select title, max(pages) from books; /*gives wrong result*/
 select * from books where pages = (select max(pages) from books);
 select title, pages from books where pages = (select max(pages) from books);
 
-/*Another wway of doing it using only one select*/
+/*Another way of doing it using only one select*/
 select * from books order by pages desc limit 1;
 select * from books order by pages asc limit 1;
 
@@ -62,3 +62,15 @@ select author_fname, author_lname, min(pages) from books group by author_fname, 
 
 /*Using max, group by and concat together*/
 select concat(author_fname, ' ', author_lname) as 'Author', max(pages) as 'Longest book' from books group by author_fname, author_lname;
+
+/*sum*/
+select sum(pages) from books;
+
+/*Sum all pages each author have written*/
+select author_fname, author_lname, sum(pages) from books group by author_fname, author_lname;
+
+/*avg*/
+select avg(pages) from books;
+
+/*Calculating average stock quantity for books released in same year*/
+select released_year, avg(stock_quantity) from books group by released_year;
