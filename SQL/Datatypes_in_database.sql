@@ -22,3 +22,16 @@ create table datatypes1(
 insert into datatypes1(Price) values(132.232432);
 
 select * from datatypes1;
+
+/*data, time, datetime*/
+create table people(
+	name varchar(20),
+    birthdate date,
+    birthtime time,
+    birthdt datetime
+);
+
+insert into people(name, birthdate, birthtime, birthdt) values('James', '1998-03-23', '10:02:23', '1998-03-23 10:02:23');
+insert into people(name, birthdate, birthtime, birthdt) values('Martin', '1993-12-24', '12:02:32', '1993-12-24 12:02:32');
+
+select * from people;
