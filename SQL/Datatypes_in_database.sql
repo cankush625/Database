@@ -131,3 +131,31 @@ select birthdate - interval 1 month from people;
 
 /*Adding 15 hours and 10 seconds using + sign*/
 select birthdt, birthdt + interval 15 hour + interval 10 second from people;
+
+/*Timestamps*/
+create table comments(
+	content varchar(100),
+    created_at timestamp default now()
+);
+
+insert into comments(content) values('India won its first world cup 2019 match');
+
+select * from comments;
+
+/*Selecting most recent comments on the top*/
+select * from comments order by created_at desc;
+
+create table comments2(
+	content varchar(100),
+    created_at timestamp default now() on update current_timestamp
+);
+
+insert into comments2(content) values('shjfbsbjfbsj');
+insert into comments2(content) values('dfnvkfshsfjssfv');
+
+select * from comments2;
+
+/*updating already added comment to see on update in action*/
+update comments2 set content = 'Hey this is ...' where content = 'shjfbsbjfbsj';
+
+select * from comments2;
