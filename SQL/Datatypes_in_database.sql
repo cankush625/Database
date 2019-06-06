@@ -73,7 +73,7 @@ select name, birthtime, hour(birthtime) from people;
 select name, birthtime, minute(birthtime) from people;
 
 /*Writing date in the format of 21 June 2015*/
-select concat(day(birthdate), ' ', dayname(birthdate), ' ', year(birthdate)) from people;
+select concat(day(birthdate), ' ', monthname(birthdate), ' ', year(birthdate)) from people;
 
 /*Using date_format*/
 /*data_format is a case sensitive*/
@@ -92,3 +92,42 @@ select date_format(birthdt, '%D %M %Y') from people;
 /*Formating time in the date_format*/
 /*Writing date in the format 12st December 2012 at 10:12*/
 select date_format(birthdt, '%D %M %Y at %h:%m') from people;
+
+/*date math*/
+/*Using datediff to calculate differnce between two dates*/
+select name, birthdate, datediff(birthdate, curdate()) from people; /*gives negative answer*/
+select name, birthdate, datediff(curdate(), birthdate) from people; /*gives positive answer*/
+
+/*Using date_add to add the date or time to the date*/
+/*Add 1 second to the 2018-12-31 23:59:59*/
+select date_add('2018-12-31 23:59:59', interval 1 second); /*It gives answer as 2019-01-01 00:00:00*/
+
+/*Add 1 minute to the 2018-12-31 23:59:59*/
+select date_add('2018-12-31 23:59:59', interval 1 minute); /*It gives answer as 2019-01-01 00:00:59*/
+
+/*Add 1 hour to the 2018-12-31 23:59:59*/
+select date_add('2018-12-31 23:59:59', interval 1 hour); /*It gives answer as 2019-01-01 00:59:59*/
+
+/*Add 1 day to the 2018-12-31 23:59:59*/
+select date_add('2018-12-31 23:59:59', interval 1 day); /*It gives answer as 2019-01-01 23:59:59*/
+
+/*Add 1:1 minute second to the 2018-12-31 23:59:59*/
+select date_add('2018-12-31 23:59:59', interval '1:1' minute_second); /*It gives answer as 2019-01-01 00:01:00*/
+
+/*Add -1 day and 5 hours to the 2018-12-31 23:59:59*/
+select date_add('2018-12-31 23:59:59', interval '-1:5' day_hour); /*It gives answer as 2018-12-30 18:59:59*/
+select date_add('2018-12-31 23:59:59', interval '-1 5' day_hour); /*It gives answer as 2018-12-30 18:59:59*/
+
+/*Subtract 1day and 1hour, 1 minute and 1 second from the 2018-12-31 23:59:59*/
+select date_sub('2018-12-31 23:59:59', interval '1 1:1:1' day_second); /*It gives answer as 2018-12-30 22:58:58*/
+
+/*Using date_add and date_sub with datebase*/
+select date_add(birthdate, interval 1 month) from people;
+select date_sub(birthdate, interval 1 month) from people;
+
+/*using + or - sign instead of date_add and date_sub*/
+select birthdate + interval 1 month from people;
+select birthdate - interval 1 month from people;
+
+/*Adding 15 hours and 10 seconds using + sign*/
+select birthdt, birthdt + interval 15 hour + interval 10 second from people;
