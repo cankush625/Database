@@ -56,3 +56,41 @@ select 32 > 12 and 'A' = 'a'; /*returns 1*/
 select title, concat(author_fname, ' ', author_lname) as "Author name", released_year from books where concat(author_fname, ' ', author_lname) = "dave eggers" || released_year > 2010;
 select title, concat(author_fname, ' ', author_lname) as "Author name", released_year from books where concat(author_fname, ' ', author_lname) = "dave eggers" or released_year > 2010;
 select title, concat(author_fname, ' ', author_lname) as "Author name", released_year from books where concat(author_fname, ' ', author_lname) = "dave eggers" and released_year > 2010 or title like '%novel%';
+
+/*Using between*/
+/*Select books published between 2004 and 2015*/
+select title, released_year from books where released_year >= 2004 && released_year <= 2015;
+/*we can replace this by using between as*/
+select title, released_year from books where released_year between 2004 and 2015;
+
+/*Using not between*/
+select title, released_year from books where released_year not between 2004 and 2015;
+
+/*Using cast()*/
+/*cast is used to convert a data to a required type*/
+select cast('2019-06-09' as datetime);
+
+use test;
+select database();
+
+/*select birthdates between 1990 and 2000*/
+select name, birthdt from people where birthdt between '1990-01-01' and '2000-01-01'; /*It works but compares the dates as string as they are in quotes*/
+/*We can overcome this by casting them as datetime*/
+select name, birthdt from people where birthdt between cast('1990-01-01' as datetime) and cast('2000-01-01' as datetime);
+
+use books_db;
+select database();
+/*Using in*/
+/*select book written by carver or lahiri or smith*/
+select title, author_lname, author_fname from books where author_lname = 'Carver' or author_lname = 'Lahiri' or author_lname = 'Smith';
+/*this can be done by using in as*/
+select title, author_lname, author_fname from books where author_lname in ('Carver', 'Lahiri', 'Smith');
+
+/*selecting released year 2017 or 1993*/
+select title, released_year from books where released_year in (1985, 2017);
+
+/*Using not in*/
+select title, released_year from books where released_year not in (1985, 2017);
+
+/*select all books released after 2000 and not including even releasing years*/
+select title, released_year from books where released_year > 2000 and released_year % 2 != 0;
