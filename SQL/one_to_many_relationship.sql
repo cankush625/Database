@@ -50,3 +50,12 @@ SELECT * FROM orders WHERE customer_id =
 /*Using cross join*/
 select * from customers, orders; /*this is almost useless because it takes every customer
 								  and combines it with the every order*/
+                                  
+/*Using inner join*/
+-- implicit inner join
+select * from customers, orders where customers.id = orders.customer_id;
+select first_name, last_name, order_date, amount from customers, orders where customers.id = orders.customer_id;
+
+-- explicit inner join /*Always do this - very important*/
+select * from customers join orders on customers.id = customer_id;
+select first_name, last_name, order_date, amount from customers join orders on customers.id = customer_id;
