@@ -15,6 +15,7 @@ CREATE TABLE orders(
     amount DECIMAL(8,2),
     customer_id INT,
     FOREIGN KEY(customer_id) REFERENCES customers(id)
+    on delete cascade
 );
 
 INSERT INTO customers (first_name, last_name, email) 
@@ -58,4 +59,30 @@ select first_name, last_name, order_date, amount from customers, orders where cu
 
 -- explicit inner join /*Always do this - very important*/
 select * from customers join orders on customers.id = customer_id;
-select first_name, last_name, order_date, amount from customers join orders on customers.id = customer_id;
+select first_name, last_name, order_date, amount from customers join orders on customers.id = orders.customer_id;
+
+/*We can also do inner join using keyword inner join*/
+select first_name, last_name, order_date, amount from customers inner join orders on customers.id = orders.customer_id;
+
+/*using inner join with group by and order by*/
+select first_name, last_name, order_date, sum(amount) as total_spent from customers join orders on customers.id = orders.customer_id group by orders.customer_id order by total_spent;
+
+/*Left join*/
+/*Left join takes all(everything) the records from the left side table and if the match is there in right side table then shows that data else shows null*/
+select * from customers left join orders on customers.id = orders.customer_id;
+select first_name, last_name, sum(amount) from customers left join orders on customers.id = orders.customer_id group by orders.customer_id;
+
+/*Replace null value by 0*/
+select first_name, last_name, ifnull(sum(amount), 0) total_spent from customers left join orders on customers.id = orders.customer_id group by orders.customer_id;
+
+/*Right join*/
+/*the result we get is same as that of the inner join*/
+select * from customers right join orders on customers.id = orders.customer_id;
+
+/*We are unable to delete parent row beacause of the parent key*/
+delete from customers where first_name = 'Boy';
+
+-- Note
+/*By removing the foreign key we can still join all the tables by exactly same commands that we are used for data with foreign key constraint*/
+
+drop table orders, customers;
