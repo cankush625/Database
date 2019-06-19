@@ -63,3 +63,15 @@ INSERT INTO reviews(series_id, reviewer_id, rating) VALUES
     (14,2,8.5),(14,3,8.9),(14,4,8.9);
     
 select title, rating from series join reviews on series.id = reviews.series_id;
+
+/*Average rating*/
+select title, avg(rating) as 'average_rating' from series join reviews on series.id = reviews.series_id group by series.id order by average_rating; /*we are grouping them by id because the name may same but the id is unique*/
+
+select first_name, last_name, rating from reviewers join reviews on reviewers.id = reviews.reviewer_id;
+
+/*Selecting the unrated series also*/
+/*we are doing left join to see the unrated series*/
+select title, rating from series left join reviews on series.id = reviews.series_id;
+select title, rating from series left join reviews on series.id = reviews.series_id where rating is null;
+
+select title as unreviewed_series from series left join reviews on series.id = reviews.series_id where rating is null;
