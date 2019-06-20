@@ -75,3 +75,13 @@ select title, rating from series left join reviews on series.id = reviews.series
 select title, rating from series left join reviews on series.id = reviews.series_id where rating is null;
 
 select title as unreviewed_series from series left join reviews on series.id = reviews.series_id where rating is null;
+
+select genre, avg(rating) as 'Average rating' from series join reviews on series.id = reviews.series_id group by genre;
+select genre, round(avg(rating), 2) as 'Average rating' from series join reviews on series.id = reviews.series_id group by genre;
+
+select first_name, last_name, count(rating) as 'Total ratings', ifnull(min(rating), 0) as min,  ifnull(max(rating), 0) as max,  ifnull(avg(rating), 0) as Avg,
+	case
+		when count(rating) >= 1 then 'ACTIVE'
+        else 'INACTIVE'
+	end as Status
+from reviewers left join reviews on reviewers.id = reviews.reviewer_id group by reviewers.id;
